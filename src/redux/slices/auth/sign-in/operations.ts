@@ -6,8 +6,9 @@ import axiosInstance from "../../../axios-interceptor";
 import { isLoading } from "../../preloader/slice";
 import { enableAccess } from "../authentication/slice";
 import { TokenInfo } from "../../../types";
+import { LoginFormInterface } from "../../../../components/auth/login/Login";
 
-export const loginThunk = createAsyncThunk("login/loginThunk", async (param, { dispatch, rejectWithValue }) => {
+export const loginThunk = createAsyncThunk<void, LoginFormInterface>("login/loginThunk", async (param, { dispatch, rejectWithValue }) => {
   try {
     dispatch(isLoading({ setPreloading: true }));
     const res = await axiosInstance.post<TokenInfo>(

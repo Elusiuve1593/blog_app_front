@@ -13,7 +13,7 @@ export const Header = () => {
 
   useEffect(() => {
     dispatch(fetchProfileThunk());
-  }, []);
+  }, [dispatch]);
   return (
     <AppBar
       position="fixed"

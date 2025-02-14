@@ -4,7 +4,7 @@ import { memo } from "react";
 interface SaveButtonProps {
   text: string;
   buttonType: "button" | "reset" | "submit";
-  icon?: any;
+  icon?: string;
   isValid?: boolean;
   callback?: () => void;
 }

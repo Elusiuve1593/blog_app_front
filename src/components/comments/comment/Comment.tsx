@@ -10,12 +10,9 @@ import {
   fetchCommentsThunk,
   updateCommentThunk,
 } from "../../../redux/slices/user/operations";
-import {
-  CommentInterface,
-  PostInterface,
-} from "../../../redux/slices/user/slice";
 import { AppDispatch } from "../../../redux/store";
 import { EditForm } from "../../../common/components/EditForm";
+import { CommentInterface, PostInterface } from "../../../redux/types";
 
 interface CommentProps {
   postIdtoNum: number;

@@ -16,9 +16,9 @@ import {
   fetchPostsThunk,
   updatePostThunk,
 } from "../../../redux/slices/user/operations";
-import { PostInterface } from "../../../redux/slices/user/slice";
 import { AppDispatch } from "../../../redux/store";
 import { EditForm } from "../../../common/components/EditForm";
+import { PostInterface } from "../../../redux/types";
 
 export const Post = () => {
   const dispatch = useDispatch<AppDispatch>();

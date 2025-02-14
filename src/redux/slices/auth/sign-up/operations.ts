@@ -4,7 +4,10 @@ import axiosInstance from "../../../axios-interceptor";
 import { isLoading } from "../../preloader/slice";
 import { SignUpInfo } from "../../../types";
 
-export const signUpThunk = createAsyncThunk("signUp/signUpThunk", async (param, { dispatch, rejectWithValue }) => {
+export const signUpThunk = createAsyncThunk<
+  void,
+  { avatar: string; username: string; email: string; password: string }
+>("signUp/signUpThunk", async (param, { dispatch, rejectWithValue }) => {
   try {
     dispatch(isLoading({ setPreloading: true }));
 

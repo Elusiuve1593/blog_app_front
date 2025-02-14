@@ -7,7 +7,7 @@ interface EditButtonProps {
   callback?: (id?: number | undefined) => void;
   id?: number | undefined;
   sizeButton?: "large" | "small" | "medium";
-  icon?: any;
+  icon?: string;
 }
 
 export const EditButton = memo(

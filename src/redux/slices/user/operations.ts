@@ -13,7 +13,12 @@ import {
 } from "./slice";
 import { isLoading } from "../preloader/slice";
 import { handleAxiosError } from "../../../common/errors-handler/errors-handler";
-import { CommentInterface, fetchPostsPaginationInterface, PostInterface, UserInterface } from "../../types";
+import {
+  CommentInterface,
+  fetchPostsPaginationInterface,
+  PostInterface,
+  UserInterface,
+} from "../../types";
 
 export const fetchCommentsThunk = createAsyncThunk(
   "profile/fetchComments",
@@ -38,9 +43,13 @@ export const fetchPostsThunk = createAsyncThunk(
   ) => {
     try {
       const res = await axiosInstance.get<fetchPostsPaginationInterface>(
-        `${import.meta.env.VITE_API_URL}/posts?page=${data.page}&limit=${data.limit}`
+        `${import.meta.env.VITE_API_URL}/posts?page=${data.page}&limit=${
+          data.limit
+        }`
       );
-      dispatch(fetchPost({ data: res.data.data, totalPages: res.data.totalPages }));
+      dispatch(
+        fetchPost({ data: res.data.data, totalPages: res.data.totalPages })
+      );
     } catch (err: unknown) {
       console.error(err);
       return rejectWithValue(err);
@@ -65,8 +74,7 @@ export const fetchProfileThunk = createAsyncThunk(
 export const addCommentThunk = createAsyncThunk<
   void,
   { content: string; postId: number }
-  >("profile/addComment", async (data, { dispatch, rejectWithValue }) => {
-  
+>("profile/addComment", async (data, { dispatch, rejectWithValue }) => {
   try {
     dispatch(isLoading({ setPreloading: true }));
 
@@ -103,10 +111,13 @@ export const addPostThunk = createAsyncThunk<void, { content: string }>(
   }
 );
 
-export const updateCommentThunk = createAsyncThunk<void, any>(
+export const updateCommentThunk = createAsyncThunk<
+  void,
+  { id: number; content: string; postId: number }
+>(
   "profile/updateComment",
   async (
-    data: { id: number; content: string, postId: number },
+    data: { id: number; content: string; postId: number },
     { dispatch, rejectWithValue }
   ) => {
     try {
@@ -126,7 +137,10 @@ export const updateCommentThunk = createAsyncThunk<void, any>(
   }
 );
 
-export const updatePostThunk = createAsyncThunk<void, any>(
+export const updatePostThunk = createAsyncThunk<
+  void,
+  { id: number; content: string }
+>(
   "profile/updatePost",
   async (
     data: { id: number; content: string },

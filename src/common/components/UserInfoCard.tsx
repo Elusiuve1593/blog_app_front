@@ -1,10 +1,10 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { AuthorInterface } from "../../redux/slices/user/slice";
 import defaultPic from "../../assets/default.png";
 import { format } from "date-fns";
 import { toZonedTime } from "date-fns-tz";
 import { memo } from "react";
+import { AuthorInterface } from "../../redux/types";
 
 interface UserInfoCardProps {
   author: AuthorInterface;

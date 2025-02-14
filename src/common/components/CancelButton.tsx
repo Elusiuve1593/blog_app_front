@@ -2,7 +2,7 @@ import Button from "@mui/material/Button";
 import { memo } from "react";
 
 interface CancelButtonProps {
-  icon?: any;
+  icon?: string;
   callback: () => void;
 }
 
