@@ -5,10 +5,7 @@ import { style } from "../../../../common/styles/styles";
 import axiosInstance from "../../../axios-interceptor";
 import { isLoading } from "../../preloader/slice";
 import { disableAccess } from "../authentication/slice";
-
-interface LogoutInfo {
-  message: string;
-}
+import { LogoutInfo } from "../../../types";
 
 export const logoutThunk = createAsyncThunk(
   "logout/logoutThunk",
@@ -20,7 +17,7 @@ export const logoutThunk = createAsyncThunk(
       );
       toast.success(res.data.message, { style });
       dispatch(disableAccess({ logout: !true }));
-    } catch (err: any) {
+    } catch (err: unknown) {
       return handleAxiosError(err, rejectWithValue);
     } finally {
       dispatch(isLoading({ setPreloading: false }));

@@ -1,41 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-export interface AuthorInterface {
-  id: number | null;
-  email: string;
-  avatar: string;
-  username: string;
-  createdAt: string;
-  updatedAt: string;
-}
-
-export interface CommentInterface {
-  id: number;
-  postId: number;
-  content: string;
-  createdAt: string;
-  author: AuthorInterface;
-}
-
-export interface PostInterface {
-  id: number;
-  content: string;
-  createdAt: string;
-  updatedAt: string;
-  author: AuthorInterface;
-}
-
-export interface UserInterface {
-  id: number;
-  email: string;
-  avatar: string;
-  username: string;
-  createdAt: string;
-  updatedAt: string;
-  comments: CommentInterface[];
-  posts: PostInterface[];
-  totalPages: number;
-}
+import { CommentInterface, PostInterface, UserInterface } from "../../types";
 
 const initialState: UserInterface = {
   id: 1,
@@ -144,6 +108,6 @@ export const {
   deletePost,
   updatePost,
   fetchPost,
-  resetAvatar
+  resetAvatar,
 } = profileSlice.actions;
 export default profileSlice.reducer;

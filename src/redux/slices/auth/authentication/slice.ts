@@ -1,10 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-
-interface AuthState {
-  isAuthenticated: boolean;
-  token: string | null;
-
-}
+import { AuthState } from "../../../types";
 
 const initialState: AuthState = {
   isAuthenticated: localStorage.getItem("token") ? true : false,

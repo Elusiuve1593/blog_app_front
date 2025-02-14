@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { useAppSelector } from "../../redux/redux-hooks";
-import { uploadImageThunk } from "../../redux/slices/img/operations";
+import { uploadImageThunk } from "../../redux/slices/avatar/operations";
 import { AppDispatch } from "../../redux/store";
 import { PhotoAvatar } from "./photo-avatar/PhotoAvatar";
 import { PhotoButtons } from "./photo-buttons/PhotoButtons";

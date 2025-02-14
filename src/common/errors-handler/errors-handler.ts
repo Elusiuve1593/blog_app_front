@@ -3,8 +3,8 @@ import { style } from "../styles/styles";
 import toast from "react-hot-toast";
 
 export const handleAxiosError = (
-  err: any,
-  rejectWithValue: any,
+  err: unknown,
+  rejectWithValue: (value: string) => void,
   redirection?: string
 ) => {
   if (axios.isAxiosError(err)) {
@@ -17,5 +17,5 @@ export const handleAxiosError = (
       return rejectWithValue(axiosError.response.data);
     }
   }
-  return rejectWithValue(err.message);
+  return rejectWithValue(err instanceof Error ? err.message : "Unknown error");
 };

@@ -2,13 +2,9 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { handleAxiosError } from "../../../../common/errors-handler/errors-handler";
 import axiosInstance from "../../../axios-interceptor";
 import { isLoading } from "../../preloader/slice";
+import { SignUpInfo } from "../../../types";
 
-interface SignUpInfo {
-  username: string;
-  message: string;
-}
-
-export const signUpThunk = createAsyncThunk<any, any>("signUp/signUpThunk", async (param, { dispatch, rejectWithValue }) => {
+export const signUpThunk = createAsyncThunk("signUp/signUpThunk", async (param, { dispatch, rejectWithValue }) => {
   try {
     dispatch(isLoading({ setPreloading: true }));
 
@@ -16,7 +12,7 @@ export const signUpThunk = createAsyncThunk<any, any>("signUp/signUpThunk", asyn
       `${import.meta.env.VITE_API_URL}/user/sign-up`,
       param
     );
-  } catch (err: any) {
+  } catch (err: unknown) {
     return handleAxiosError(err, rejectWithValue);
   } finally {
     dispatch(isLoading({ setPreloading: false }));

@@ -3,19 +3,17 @@ import axiosInstance from "../../axios-interceptor";
 import {
   addComment,
   addPost,
-  CommentInterface,
   deleteComment,
   deletePost,
   updateComment,
   fetchComment,
-  PostInterface,
   setUser,
-  UserInterface,
   updatePost,
   fetchPost,
 } from "./slice";
 import { isLoading } from "../preloader/slice";
 import { handleAxiosError } from "../../../common/errors-handler/errors-handler";
+import { CommentInterface, fetchPostsPaginationInterface, PostInterface, UserInterface } from "../../types";
 
 export const fetchCommentsThunk = createAsyncThunk(
   "profile/fetchComments",
@@ -25,19 +23,12 @@ export const fetchCommentsThunk = createAsyncThunk(
         `${import.meta.env.VITE_API_URL}/comments?postId=${postId}`
       );
       dispatch(fetchComment({ data: res.data }));
-    } catch (err) {
+    } catch (err: unknown) {
       console.error(err);
       return rejectWithValue(err);
     }
   }
 );
-
-export interface fetchPostsPaginationInterface {
-  data: PostInterface[];
-  total: number;
-  page: number;
-  totalPages: number;
-}
 
 export const fetchPostsThunk = createAsyncThunk(
   "profile/fetchPosts",
@@ -50,7 +41,7 @@ export const fetchPostsThunk = createAsyncThunk(
         `${import.meta.env.VITE_API_URL}/posts?page=${data.page}&limit=${data.limit}`
       );
       dispatch(fetchPost({ data: res.data.data, totalPages: res.data.totalPages }));
-    } catch (err) {
+    } catch (err: unknown) {
       console.error(err);
       return rejectWithValue(err);
     }
@@ -65,7 +56,7 @@ export const fetchProfileThunk = createAsyncThunk(
         `${import.meta.env.VITE_API_URL}/user`
       );
       dispatch(setUser({ user: res.data }));
-    } catch (err) {
+    } catch (err: unknown) {
       console.error(err, rejectWithValue);
     }
   }
@@ -85,7 +76,7 @@ export const addCommentThunk = createAsyncThunk<
     );
 
     dispatch(addComment({ data: res.data }));
-  } catch (err: any) {
+  } catch (err: unknown) {
     handleAxiosError(err, rejectWithValue);
   } finally {
     dispatch(isLoading({ setPreloading: false }));
@@ -104,7 +95,7 @@ export const addPostThunk = createAsyncThunk<void, { content: string }>(
       );
 
       dispatch(addPost({ data: res.data }));
-    } catch (err: any) {
+    } catch (err: unknown) {
       handleAxiosError(err, rejectWithValue);
     } finally {
       dispatch(isLoading({ setPreloading: false }));
@@ -127,7 +118,7 @@ export const updateCommentThunk = createAsyncThunk<void, any>(
       );
 
       dispatch(updateComment({ data: res.data }));
-    } catch (err: any) {
+    } catch (err: unknown) {
       handleAxiosError(err, rejectWithValue);
     } finally {
       dispatch(isLoading({ setPreloading: false }));
@@ -150,7 +141,7 @@ export const updatePostThunk = createAsyncThunk<void, any>(
       );
 
       dispatch(updatePost({ data: res.data }));
-    } catch (err: any) {
+    } catch (err: unknown) {
       handleAxiosError(err, rejectWithValue);
     } finally {
       dispatch(isLoading({ setPreloading: false }));
@@ -164,7 +155,7 @@ export const deleteCommentThunk = createAsyncThunk(
     try {
       await axiosInstance.delete(`/comments/${id}`);
       dispatch(deleteComment({ id }));
-    } catch (err) {
+    } catch (err: unknown) {
       handleAxiosError(err, rejectWithValue);
     } finally {
       dispatch(isLoading({ setPreloading: false }));
@@ -178,7 +169,7 @@ export const deletePostThunk = createAsyncThunk(
     try {
       await axiosInstance.delete(`/posts/${id}`);
       dispatch(deletePost({ id }));
-    } catch (err) {
+    } catch (err: unknown) {
       handleAxiosError(err, rejectWithValue);
     } finally {
       dispatch(isLoading({ setPreloading: false }));

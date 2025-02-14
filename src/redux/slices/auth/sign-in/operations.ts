@@ -5,13 +5,9 @@ import { style } from "../../../../common/styles/styles";
 import axiosInstance from "../../../axios-interceptor";
 import { isLoading } from "../../preloader/slice";
 import { enableAccess } from "../authentication/slice";
+import { TokenInfo } from "../../../types";
 
-interface TokenInfo {
-  id: number;
-  token: string;
-}
-
-export const loginThunk = createAsyncThunk<any, any>("login/loginThunk", async (param, { dispatch, rejectWithValue }) => {
+export const loginThunk = createAsyncThunk("login/loginThunk", async (param, { dispatch, rejectWithValue }) => {
   try {
     dispatch(isLoading({ setPreloading: true }));
     const res = await axiosInstance.post<TokenInfo>(
@@ -20,7 +16,7 @@ export const loginThunk = createAsyncThunk<any, any>("login/loginThunk", async (
     );
     toast.success("Login is successfully!", { style });
     dispatch(enableAccess({ token: res.data.token }));
-  } catch (err: any) {
+  } catch (err: unknown) {
     return handleAxiosError(err, rejectWithValue);
   } finally {
     dispatch(isLoading({ setPreloading: false }));
