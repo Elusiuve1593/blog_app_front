@@ -1,8 +1,8 @@
 import Button from "@mui/material/Button";
-import { memo } from "react";
+import { memo, ReactElement } from "react";
 
 interface CancelButtonProps {
-  icon?: string;
+  icon?: ReactElement;
   callback: () => void;
 }
 

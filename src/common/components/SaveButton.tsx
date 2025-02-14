@@ -1,10 +1,10 @@
 import Button from "@mui/material/Button";
-import { memo } from "react";
+import { memo, ReactElement } from "react";
 
 interface SaveButtonProps {
   text: string;
   buttonType: "button" | "reset" | "submit";
-  icon?: string;
+  icon?: ReactElement;
   isValid?: boolean;
   callback?: () => void;
 }

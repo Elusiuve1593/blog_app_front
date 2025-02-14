@@ -1,5 +1,5 @@
 import Button from "@mui/material/Button";
-import { memo } from "react";
+import { memo, ReactElement } from "react";
 
 interface EditButtonProps {
   variantButton: "contained" | "outlined" | "text";
@@ -7,7 +7,7 @@ interface EditButtonProps {
   callback?: (id?: number | undefined) => void;
   id?: number | undefined;
   sizeButton?: "large" | "small" | "medium";
-  icon?: string;
+  icon?: ReactElement;
 }
 
 export const EditButton = memo(
