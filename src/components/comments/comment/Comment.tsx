@@ -58,7 +58,9 @@ export const Comment = memo(({ postIdtoNum }: CommentProps) => {
     <Box sx={{ marginTop: 7 }}>
       {post && (
         <Paper sx={{ p: 2, mb: 2, maxWidth: 500 }}>
-          <Typography variant="h6">{post.content}</Typography>
+          <Typography variant="h6" sx={{ color: "#1a68c1e0" }}>
+            {post.content}
+          </Typography>
         </Paper>
       )}
 
